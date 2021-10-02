@@ -1,0 +1,101 @@
+import os
+import sys
+
+
+class mahasiswa:
+    nim = ''
+    nama = ''
+
+
+pilih = 0
+dataSiswa = []
+
+
+def menu():
+    os.system('cls')
+    print("Menu Aplikasi Data Siswa ")
+    print("------------------------------------------")
+    print("1. Input Data Siswa")
+    print("2. Tampilan Data Siswa")
+    print("3. Update Data Siswa")
+    print("4. Hapus Data Siswa")
+    print("5. Author")
+    print("6. Keluar Aplikasi")
+    pilih = int(input("Masukan pilihan anda : "))
+    if pilih == 1:
+        tampil()
+        menu()
+    elif pilih == 2:
+        tampil()
+        input("kembali ke menu utama")
+        menu()
+    elif pilih == 3:
+        index_update = -1
+        input()
+        id_edit = int(input("Input Nim yang akan di update"))
+        for a in range(0, len(dataSiswa)):
+            if id_edit == dataSiswa[a].nim:
+                index_update = a
+                break
+        if(index_update > - 1):
+            print("INPUT DATA YANG DI UPDATE")
+            siswa = mahasiswa()
+            siswa.nim = (int(input("masukkan nim : ")))
+            siswa.nama = (input("masukkan nama siswa : "))
+            dataSiswa[index_update] = siswa
+            print("berhasil update data siswa")
+        else:
+            print("nim tidak ditemukkan")
+        input("kembali ke menu utama")
+        menu()
+    elif pilih == 4:
+        os.system('cls')
+        tampil()
+        index_delete = -1
+        id_hapus = int(input("input nim yang akan di hapus : "))
+        for a in range(0, len(dataSiswa)):
+            index_update = a
+            break
+        if(index_delete > -1):
+            del dataSiswa[index_delete]
+            print("data telah dihapus")
+        else:
+            print("nim tidak ditemukan")
+        input("kembali menu utama")
+        menu()
+    elif pilih == 5:
+        author()
+        input("n\n\ kembali menu utama")
+        menu()
+    elif pilih == 6:
+        sys.exit()
+
+
+def tampil():
+    os.system('cls')
+    print("DATA MAHASISWA")
+    for data in dataSiswa:
+        print("Nim : "+str(data.nim))
+        print("Nama : "+data.nama)
+        print("--------------------------")
+
+
+def author():
+    os.system('cls')
+    print("Farras Batubara")
+    print("UnHar")
+
+
+def pilih1():
+    ulang = 'Y'
+    while ulang in ('y', 'Y'):
+        os.system('cls')
+        siswaBaru = mahasiswa()
+        print("INPUT DATA MAHASISWA")
+        siswaBaru.nim = (int(input("masukkan nim : ")))
+        siswaBaru.nim = (input("masukkan nama siswa :"))
+        dataSiswa.append(siswaBaru)
+        ulang = input("Apakah anda ingin mengulang (Y/ T)?")
+
+
+menu()
